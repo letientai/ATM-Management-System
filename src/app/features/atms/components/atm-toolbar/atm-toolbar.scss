@@ -1,0 +1,32 @@
+.atm-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    border-radius: 14px;
+    background-color: var(--mat-sys-surface);
+    border: 1px solid var(--mat-sys-secondary-container);
+}
+
+.search-field {
+    flex: 1;
+    max-width: 520px;
+}
+
+
+@media (max-width: 768px) {
+    .atm-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-field {
+        max-width: 100%;
+    }
+
+    .add-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

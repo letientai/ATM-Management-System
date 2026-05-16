@@ -1,0 +1,47 @@
+$max-width-content: 1200px;
+$padding-mobile: 16px;
+$padding-desktop: 24px;
+
+.atm-layout-container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+    background-color: white;
+}
+
+.atm-header-wrapper {
+    background-color: var(--mat-sys-surface);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.atm-main-content {
+    width: 100%;
+    max-width: $max-width-content;
+    margin: 0 auto;
+    padding: $padding-mobile;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-sizing: border-box;
+
+    @media (min-width: 768px) {
+        padding: $padding-desktop;
+        gap: 24px;
+    }
+}
+
+.atm-toolbar-section {
+    width: 100%;
+}
+
+
+.atm-footer-wrapper {
+    background: var(--mat-sys-primary);
+    padding: 16px;
+    color: white;
+    text-align: center;
+    font-size: 13px;
+    border-top: 1px solid var(--mat-sys-secondary-container);
+}

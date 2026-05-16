@@ -1,0 +1,13 @@
+<section class="atm-toolbar" aria-label="ATM toolbar actions">
+    <mat-form-field class="search-field" appearance="outline">
+        <mat-label>Search ATM</mat-label>
+        <input #searchInput matInput type="text" placeholder="Search by name, serial number"
+            (input)="onSearchKeywordChange(searchInput.value)" aria-label="Search ATM" />
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <button type="button" mat-flat-button (click)="onAddNewAtm()">
+        <mat-icon>add</mat-icon>
+        Add new ATM
+    </button>
+</section>

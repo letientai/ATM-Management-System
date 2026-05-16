@@ -1,0 +1,21 @@
+<div class="atm-layout-container">
+    <header class="atm-header-wrapper">
+        <app-atm-header></app-atm-header>
+    </header>
+
+    <main class="atm-main-content">
+        <section class="atm-toolbar-section">
+            <app-atm-toolbar [(searchKeyword)]="searchKeyword"></app-atm-toolbar>
+        </section>
+
+        <section class="atm-table-section">
+            <app-atm-table [atmList]="dataList()" [loading]="loading()"></app-atm-table>
+        </section>
+    </main>
+
+    <footer class="atm-footer-wrapper">
+        <div class="footer-content">
+            <span>© 2026 ATM Todo System</span>
+        </div>
+    </footer>
+</div>

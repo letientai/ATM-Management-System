@@ -1,0 +1,59 @@
+<div class="atm-table-container">
+    @if (isEmpty()) {
+    <div class="empty-state">
+        <mat-icon class="empty-icon">storage</mat-icon>
+        <h3>No ATM Records Found</h3>
+        <p>There are currently no ATM records to display. Please add a new ATM to get started.</p>
+    </div>
+    } @else {
+    <table mat-table [dataSource]="pagedData()" class="atm-table" role="grid">
+        <ng-container matColumnDef="atmName">
+            <th mat-header-cell *matHeaderCellDef>ATM Name</th>
+            <td mat-cell *matCellDef="let element">{{ element.atmName }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="manufacturer">
+            <th mat-header-cell *matHeaderCellDef>Manufacturer</th>
+            <td mat-cell *matCellDef="let element">{{ element.manufacturer }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef>Type</th>
+            <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="serialNumber">
+            <th mat-header-cell *matHeaderCellDef>Serial Number</th>
+            <td mat-cell *matCellDef="let element" class="serial-cell">{{ element.serialNumber }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="image">
+            <th mat-header-cell *matHeaderCellDef>Image</th>
+            <td mat-cell *matCellDef="let element">
+                --
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let element" class="actions-cell">
+                <button type="button" mat-icon-button class="edit-btn" (click)="handleEdit(element)"
+                    matTooltip="Edit ATM" aria-label="Edit ATM {{ element.atmName }}">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button type="button" mat-icon-button class="delete-btn" (click)="handleDelete(element.id)"
+                    matTooltip="Delete ATM" aria-label="Delete ATM {{ element.atmName }}">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator [length]="atmList().length" [pageSize]="pageSize()" [pageSizeOptions]="pageSizeOptions"
+        [pageIndex]="pageIndex()" (page)="handlePageChange($event)" class="atm-pagination" aria-label="Select page">
+    </mat-paginator>
+
+    }
+</div>
