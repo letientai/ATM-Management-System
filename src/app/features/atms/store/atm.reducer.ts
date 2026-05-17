@@ -9,7 +9,7 @@ export const atmReducer = createReducer(
     //GET ALL
     on(AtmActions.getAtms, (state) => ({
         ...state,
-        loading: true,
+        loading: { ...state.loading, getAtms: true },
         error: null
     })),
     on(AtmActions.getAtmsSuccess, (state, { atms }) => {
@@ -22,11 +22,11 @@ export const atmReducer = createReducer(
             ...state,
             ids: atms.map(a => a.id),
             entities,
-            loading: false,
+            loading: { ...state.loading, getAtms: false },
         };
     }),
     //CREATE
-    on(AtmActions.createAtm, (state) => ({ ...state, loading: true })),
+    on(AtmActions.createAtm, (state) => ({ ...state, loading: { ...state.loading, createAtm: true } })),
     on(AtmActions.createAtmSuccess, (state, { atm }) => ({
         ...state,
         ids: [atm.id, ...state.ids],
@@ -34,21 +34,21 @@ export const atmReducer = createReducer(
             ...state.entities,
             [atm.id]: atm,
         },
-        loading: false,
+        loading: { ...state.loading, createAtm: false },
     })),
 
     //UPDATE
-    on(AtmActions.updateAtm, (state) => ({ ...state, loading: true })),
+    on(AtmActions.updateAtm, (state) => ({ ...state, loading: { ...state.loading, updateAtm: true } })),
     on(AtmActions.updateAtmSuccess, (state, { atm }) => ({
         ...state,
         entities: {
             ...state.entities,
             [atm.id]: atm,
         },
-        loading: false,
+        loading: { ...state.loading, updateAtm: false },
     })),
     //DELETE
-    on(AtmActions.deleteAtm, (state) => ({ ...state, loading: true })),
+    on(AtmActions.deleteAtm, (state) => ({ ...state, loading: { ...state.loading, deleteAtm: true } })),
     on(AtmActions.deleteAtmSuccess, (state, { id }) => {
         const { [id]: removed, ...rest } = state.entities;
 
@@ -56,7 +56,7 @@ export const atmReducer = createReducer(
             ...state,
             ids: state.ids.filter(i => i !== id),
             entities: rest,
-            loading: false,
+            loading: { ...state.loading, deleteAtm: false },
         };
     }),
 
@@ -66,7 +66,7 @@ export const atmReducer = createReducer(
         AtmActions.createAtmFailure,
         AtmActions.updateAtmFailure,
         AtmActions.deleteAtmFailure,
-        (state, { error }) => ({ ...state, error, loading: false })
+        (state, { error }) => ({ ...state, error, loading: { getAtms: false, createAtm: false, updateAtm: false, deleteAtm: false } })
     )
 );
 

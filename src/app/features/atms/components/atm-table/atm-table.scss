@@ -5,21 +5,19 @@
     border: 1px solid var(--mat-sys-secondary-container);
 }
 
-.empty-state {
+.state-view {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 60px 20px;
+    padding: 56px 20px;
     text-align: center;
-    color: var(--mat-sys-outline);
-    background-color: var(--mat-sys-surface);
 
-    .empty-icon {
-        font-size: 64px;
-        width: 64px;
-        height: 64px;
-        margin-bottom: 16px;
+    .state-icon {
+        font-size: 56px;
+        width: 56px;
+        height: 56px;
+        margin-bottom: 12px;
     }
 
     h3 {
@@ -31,6 +29,36 @@
     p {
         margin: 0;
         font-size: 14px;
+        max-width: 56ch;
+    }
+}
+
+.empty-state {
+    color: var(--mat-sys-outline);
+    background-color: var(--mat-sys-surface);
+}
+
+.loading-state {
+    color: var(--mat-sys-primary);
+    background-color: var(--mat-sys-surface);
+}
+
+.loading-icon {
+    animation: rotate 1s linear infinite;
+}
+
+.error-state {
+    color: var(--mat-sys-error);
+    background-color: color-mix(in srgb, var(--mat-sys-error) 8%, var(--mat-sys-surface));
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
     }
 }
 

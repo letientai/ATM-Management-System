@@ -34,6 +34,7 @@ export class AtmEffects {
         )
     );
 
+    //CREATE
     createAtm$ = createEffect(() =>
         this.actions$.pipe(
             ofType(AtmActions.createAtm),
@@ -46,6 +47,7 @@ export class AtmEffects {
         )
     );
 
+    //UPDATE
     updateAtm$ = createEffect(() =>
         this.actions$.pipe(
             ofType(AtmActions.updateAtm),
@@ -58,6 +60,7 @@ export class AtmEffects {
         )
     );
 
+    //DELETE
     deleteAtm$ = createEffect(() =>
         this.actions$.pipe(
             ofType(AtmActions.deleteAtm),

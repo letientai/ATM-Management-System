@@ -5,5 +5,12 @@ export interface Atm {
   type: string;
   serialNumber: string;
   image: string;
-  createdAt?: string;
+}
+
+export interface AtmFormModal {
+  atmName: string;
+  manufacturer: string;
+  type: string;
+  serialNumber: string;
+  image: string;
 }

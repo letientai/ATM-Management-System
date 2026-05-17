@@ -18,7 +18,7 @@ export class AtmTable {
   readonly atmList = input.required<Atm[]>();
   readonly loading = input<boolean>(false);
   readonly onEdit = output<Atm>();
-  readonly onDelete = output<string>();
+  readonly onDelete = output<Atm>();
 
   // Table state
   readonly pageSize = signal(5);
@@ -53,7 +53,7 @@ export class AtmTable {
     this.onEdit.emit(atm);
   }
 
-  handleDelete(atmId: string): void {
-    this.onDelete.emit(atmId);
+  handleDelete(atm: Atm): void {
+    this.onDelete.emit(atm);
   }
 }

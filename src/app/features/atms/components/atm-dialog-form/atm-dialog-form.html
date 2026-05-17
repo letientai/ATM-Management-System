@@ -1,1 +1,73 @@
-<p>atm-dialog-form works!</p>
+@if (isOpen()) {
+<div class="dialog-overlay" (click)="onClose()">
+    <div class="dialog-content" (click)="$event.stopPropagation()">
+        <div class="dialog-header">
+            <h2>{{ atmData() ? 'Edit ATM' : 'Create ATM' }}</h2>
+            <button class="close-btn" type="button" (click)="onClose()">×</button>
+        </div>
+
+        <form class="dialog-form" [formRoot]="formData">
+            <div class="form-group">
+                <label>ATM Name</label>
+                <input type="text" [formField]="formData.atmName" />
+                @if (formData.atmName().touched() && formData.atmName().invalid()) {
+                <ul class="error-list">
+                    @for (error of formData.atmName().errors(); track error) {
+                    <li>{{ error.message }}</li>
+                    }
+                </ul>
+                }
+            </div>
+
+            <div class="form-group">
+                <label>Manufacturer</label>
+                <input type="text" [formField]="formData.manufacturer" />
+                @if (formData.manufacturer().touched() && formData.manufacturer().invalid()) {
+                <ul class="error-list">
+                    @for (error of formData.manufacturer().errors(); track error) {
+                    <li>{{ error.message }}</li>
+                    }
+                </ul>
+                }
+            </div>
+
+            <div class="form-group">
+                <label>Type</label>
+                <input type="text" [formField]="formData.type" />
+            </div>
+
+            <div class="form-group">
+                <label>Serial Number</label>
+                <input type="text" [formField]="formData.serialNumber" />
+                @if (formData.serialNumber().touched() && formData.serialNumber().invalid()) {
+                <ul class="error-list">
+                    @for (error of formData.serialNumber().errors(); track error) {
+                    <li>{{ error.message }}</li>
+                    }
+                </ul>
+                }
+            </div>
+
+            <div class="form-group">
+                <label>Image</label>
+                <input type="text" [formField]="formData.image" />
+                @if (formData.image().touched() && formData.image().invalid()) {
+                <ul class="error-list">
+                    @for (error of formData.image().errors(); track error) {
+                    <li>{{ error.message }}</li>
+                    }
+                </ul>
+                }
+            </div>
+
+            <div class="dialog-footer">
+                <button class="btn-cancel" type="button" (click)="onClose()">Cancel</button>
+                <button mat-flat-button type="submit" [disabled]="formData().invalid() || loading()">
+                    {{ loading() ? 'Saving...' : 'Save' }}
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+}

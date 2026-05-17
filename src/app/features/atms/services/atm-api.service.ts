@@ -7,25 +7,20 @@ import { Observable } from "rxjs";
 @Injectable({ providedIn: 'root' })
 export class AtmService {
     private readonly http = inject(HttpClient);
-    private readonly baseUrl = `${environment.apiUrl}/v1`;
 
     getATMs(): Observable<Atm[]> {
-        return this.http.get<Atm[]>(`${this.baseUrl}/atm`);
-    }
-
-    getATMById(id: string): Observable<Atm> {
-        return this.http.get<Atm>(`${this.baseUrl}/atm/${id}`);
+        return this.http.get<Atm[]>('/atm');
     }
 
     createATM(atm: Omit<Atm, 'id' | 'createdAt'>): Observable<Atm> {
-        return this.http.post<Atm>(`${this.baseUrl}/atm`, atm);
+        return this.http.post<Atm>('/atm', atm);
     }
 
     updateATM(id: string, atm: Partial<Omit<Atm, 'id' | 'createdAt'>>): Observable<Atm> {
-        return this.http.put<Atm>(`${this.baseUrl}/atm/${id}`, atm);
+        return this.http.put<Atm>(`/atm/${id}`, atm);
     }
 
     deleteATM(id: string): Observable<any> {
-        return this.http.delete(`${this.baseUrl}/atm/${id}`);
+        return this.http.delete(`/atm/${id}`);
     }
 }

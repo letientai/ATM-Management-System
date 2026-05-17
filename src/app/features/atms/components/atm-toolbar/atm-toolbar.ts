@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, model } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, model, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,18 +13,21 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class AtmToolbar {
   searchKeyword = model<string>('');
-  private debounceTimeout: number | null = null;
+  openDialog = output<boolean>();
 
-  onSearchKeywordChange(_keyword: string): void {
-    if (this.debounceTimeout) {
-      clearTimeout(this.debounceTimeout);
-    }
+  private debounceTimeout?: ReturnType<typeof setTimeout>;
+
+  private readonly DEBOUNCE_TIME = 300;
+
+  onSearchKeywordChange(value: string): void {
+    clearTimeout(this.debounceTimeout);
+
     this.debounceTimeout = setTimeout(() => {
-      this.searchKeyword.set(_keyword);
-    }, 300);
+      this.searchKeyword.set(value);
+    }, this.DEBOUNCE_TIME);
   }
 
   onAddNewAtm(): void {
-    // Placeholder for add ATM action.
+    this.openDialog.emit(true);
   }
 }
