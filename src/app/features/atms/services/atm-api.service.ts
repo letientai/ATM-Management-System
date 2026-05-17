@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
 @Injectable({ providedIn: 'root' })
 export class AtmService {
     private readonly http = inject(HttpClient);
-    private readonly baseUrl = `${environment.apiUrl}/v1`;
+    private readonly baseUrl = new URL('/v1', environment.apiUrl).toString();
 
     getATMs(): Observable<Atm[]> {
         return this.http.get<Atm[]>(`${this.baseUrl}/atm`);

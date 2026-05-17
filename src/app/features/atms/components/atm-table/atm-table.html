@@ -1,7 +1,13 @@
 <div class="atm-table-container">
-    @if (isEmpty()) {
+    @if (error(); as errorMessage) {
+    <div class="error-state" role="alert" aria-live="polite">
+        <mat-icon class="state-icon">error</mat-icon>
+        <h3>Unable to load ATM records</h3>
+        <p>{{ errorMessage }}</p>
+    </div>
+    } @else if (isEmpty()) {
     <div class="empty-state">
-        <mat-icon class="empty-icon">storage</mat-icon>
+        <mat-icon class="state-icon">storage</mat-icon>
         <h3>No ATM Records Found</h3>
         <p>There are currently no ATM records to display. Please add a new ATM to get started.</p>
     </div>

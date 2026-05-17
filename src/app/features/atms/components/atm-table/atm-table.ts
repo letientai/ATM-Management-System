@@ -17,6 +17,7 @@ export class AtmTable {
   // Inputs - Outputs
   readonly atmList = input.required<Atm[]>();
   readonly loading = input<boolean>(false);
+  readonly error = input<string | null>(null);
   readonly onEdit = output<Atm>();
   readonly onDelete = output<string>();
 
