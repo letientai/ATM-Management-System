@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, model } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, model, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class AtmToolbar {
   searchKeyword = model<string>('');
+  openDialog = output<boolean>();
 
   private debounceTimeout?: ReturnType<typeof setTimeout>;
 
@@ -27,5 +28,6 @@ export class AtmToolbar {
   }
 
   onAddNewAtm(): void {
+    this.openDialog.emit(true);
   }
 }

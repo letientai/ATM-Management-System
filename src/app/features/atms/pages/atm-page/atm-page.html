@@ -5,11 +5,12 @@
 
     <main class="atm-main-content">
         <section class="atm-toolbar-section">
-            <app-atm-toolbar [(searchKeyword)]="searchKeyword"></app-atm-toolbar>
+            <app-atm-toolbar [(searchKeyword)]="searchKeyword" (openDialog)="onAddNewAtm()"></app-atm-toolbar>
         </section>
 
         <section class="atm-table-section">
-            <app-atm-table [atmList]="dataList()" [loading]="loading()" [error]="error()"></app-atm-table>
+            <app-atm-table [atmList]="dataList()" [loading]="loading().getAtms" (onEdit)="onEditAtm($event)"
+                (onDelete)="onDeleteAtm($event)"></app-atm-table>
         </section>
     </main>
 
@@ -18,4 +19,12 @@
             <span>© 2026 ATM Todo System</span>
         </div>
     </footer>
+
+    <app-atm-dialog-form [isOpen]="isDialogOpen()" [atmData]="selectedAtm()" (save)="onSave($event)"
+        (close)="onDialogClose()" [loading]="loading().createAtm || loading().updateAtm"> </app-atm-dialog-form>
+
+    <app-common-delete-dialog [isOpen]="isDeleteDialogOpen()" [title]="'Xóa máy ATM'"
+        [description]="deleteDialogDescription()" [confirmBtnText]="'Đồng ý xóa'" [cancelBtnText]="'Để tôi xem lại'"
+        [loading]="loading().deleteAtm" (confirm)="onConfirmDelete()" (cancel)="onDeleteDialogClose()">
+    </app-common-delete-dialog>
 </div>

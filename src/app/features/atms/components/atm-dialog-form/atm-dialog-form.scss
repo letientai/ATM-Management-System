@@ -1,0 +1,120 @@
+.dialog-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background: rgba(15, 23, 42, 0.58);
+    backdrop-filter: blur(8px);
+}
+
+.dialog-content {
+    background: white;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    overflow: hidden;
+}
+
+.dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #f0f0f0;
+
+    h2 {
+        margin: 0;
+        font-size: 20px;
+    }
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #999;
+
+    &:hover {
+        color: #000;
+    }
+}
+
+.dialog-form {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    label {
+        font-weight: 500;
+        font-size: 14px;
+    }
+
+    input {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+
+        &:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+        }
+    }
+}
+
+.dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 20px 0;
+    border-top: 1px solid #f0f0f0;
+}
+
+.btn-cancel,
+.btn-save {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.btn-cancel {
+    background: #f0f0f0;
+    color: #333;
+
+    &:hover {
+        background: #e0e0e0;
+    }
+}
+
+.error-list {
+    color: red;
+    font-size: 0.75rem;
+    margin: 0.25rem 0 0 0;
+    padding-left: 0;
+    list-style-position: inside;
+}
+
+.error-list li {
+    margin: 0;
+}
+
+.api-error {
+    margin: 0;
+    color: #d32f2f;
+    font-size: 0.875rem;
+}
