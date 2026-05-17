@@ -60,10 +60,6 @@
                 }
             </div>
 
-            @if (errorMessage()) {
-            <p class="api-error">{{ errorMessage() }}</p>
-            }
-
             <div class="dialog-footer">
                 <button class="btn-cancel" type="button" (click)="onClose()">Cancel</button>
                 <button mat-flat-button type="submit" [disabled]="formData().invalid() || loading()">

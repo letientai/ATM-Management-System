@@ -17,7 +17,6 @@ export class AtmDialogForm {
   isOpen = input(false);
   atmData = input<Atm | null>(null);
   loading = input(false);
-  errorMessage = input<string | null>(null);
 
   save = output<AtmFormModal>();
   close = output<void>();
