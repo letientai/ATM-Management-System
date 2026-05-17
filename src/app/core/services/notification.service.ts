@@ -1,13 +1,13 @@
 import { inject, Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { CommonToastComponent, ToastData } from "../../shared/components/common-toast/common-toast";
+import { CommonToast, ToastData } from "../../shared/components/common-toast/common-toast";
 
 @Injectable({ providedIn: 'root' })
 export class NotificationService {
     private snackBar = inject(MatSnackBar);
 
     private show(message: string, type: ToastData['type']): void {
-        this.snackBar.openFromComponent(CommonToastComponent, {
+        this.snackBar.openFromComponent(CommonToast, {
             duration: 3000,
             horizontalPosition: 'right',
             verticalPosition: 'top',

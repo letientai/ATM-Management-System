@@ -15,10 +15,10 @@ export interface ToastData {
   styleUrl: './common-toast.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CommonToastComponent {
+export class CommonToast {
 
   protected data: ToastData = inject(MAT_SNACK_BAR_DATA);
-  protected snackBarRef = inject(MatSnackBarRef<CommonToastComponent>);
+  protected snackBarRef = inject(MatSnackBarRef<CommonToast>);
 
   getIcon(): string {
     switch (this.data.type) {
