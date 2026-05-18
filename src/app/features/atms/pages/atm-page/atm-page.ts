@@ -68,17 +68,18 @@ export class AtmPage implements OnInit {
 
   constructor() {
     this.actions$.pipe(
-      ofType(AtmActions.createAtmSuccess, AtmActions.updateAtmSuccess),
+      ofType(
+        AtmActions.createAtmSuccess,
+        AtmActions.updateAtmSuccess,
+        AtmActions.deleteAtmSuccess
+      ),
       takeUntilDestroyed()
-    ).subscribe(() => {
-      this.onDialogClose();
-    });
-
-    this.actions$.pipe(
-      ofType(AtmActions.deleteAtmSuccess),
-      takeUntilDestroyed()
-    ).subscribe(() => {
-      this.onDeleteDialogClose();
+    ).subscribe((action) => {
+      if (action.type === AtmActions.deleteAtmSuccess.type) {
+        this.onDeleteDialogClose();
+      } else {
+        this.onDialogClose();
+      }
     });
   }
 
